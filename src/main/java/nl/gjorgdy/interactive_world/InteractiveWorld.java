@@ -15,6 +15,7 @@ public class InteractiveWorld implements ModInitializer {
 	public static final String MOD_ID = "interactive_world";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 
+	public static boolean removePathBlock = true;
 	public static boolean blastProofTintedGlass = false;
 	public static boolean explosionItemCrushing = false;
 

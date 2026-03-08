@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import nl.gjorgdy.interactive_world.InteractiveWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,22 +31,19 @@ public class ShovelItemMixin {
             Level world = context.getLevel();
             BlockPos blockPos = context.getClickedPos();
             BlockState blockState = world.getBlockState(blockPos);
-            if (blockState.is(Blocks.DIRT_PATH)) {
-
-                Player playerEntity = context.getPlayer();
+            var player = context.getPlayer();
+            if (player == null) return;
+            if (blockState.is(Blocks.DIRT_PATH) && player.isCrouching() && InteractiveWorld.removePathBlock) {
                 BlockState dirtState = Blocks.DIRT.defaultBlockState();
                 Block.pushEntitiesUp(blockState, dirtState, world, blockPos);
                 world.setBlock(blockPos, dirtState, 11);
                 world.playSound(null, blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 0.75F);
-                world.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(playerEntity, dirtState));
+                world.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, dirtState));
 	            assert context.getPlayer() != null;
 	            PlayerBlockBreakEvents.AFTER.invoker().afterBlockBreak(world, context.getPlayer(), context.getClickedPos(), blockState, null);
 
-
-                if (playerEntity != null) {
-                    playerEntity.swing(context.getHand(), true);
-                    context.getItemInHand().hurtAndBreak(1, playerEntity, context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-                }
+	            player.swing(context.getHand(), true);
+	            context.getItemInHand().hurtAndBreak(1, player, context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
             }
         }
     }
