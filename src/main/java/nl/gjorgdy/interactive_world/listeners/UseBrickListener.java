@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import nl.gjorgdy.interactive_world.InteractiveWorld;
 import nl.gjorgdy.interactive_world.modules.Bricks;
 import nl.gjorgdy.interactive_world.utils.BlockUtils;
 import nl.gjorgdy.interactive_world.utils.PlayerUtils;
@@ -34,6 +35,7 @@ public class UseBrickListener implements UseBlockCallback {
 
         // shears on mossy block
         if (itemStack.is(Items.SHEARS) && BlockUtils.isMossy(blockState.getBlock())) {
+            if (!InteractiveWorld.shearMossyBlocks.enabled(player)) return InteractionResult.PASS;
             if (!(world instanceof ServerLevel serverWorld)) return PlayerUtils.clientSwingHand(player, hand, hitResult);
             if (Bricks.shearMoss(serverWorld, hitResult.getBlockPos(), blockState, player)) {
                 if (new Random().nextInt(4) > 1) {
@@ -45,8 +47,19 @@ public class UseBrickListener implements UseBlockCallback {
                 return InteractionResult.SUCCESS;
             }
         }
+        // vines on block
+        else if (!player.isShiftKeyDown() && itemStack.is(Items.VINE) && BlockUtils.canBeMossy(blockState.getBlock())) {
+            if (!InteractiveWorld.mossifyBlocks) return InteractionResult.PASS;
+            if (!(world instanceof ServerLevel serverWorld)) return PlayerUtils.clientSwingHand(player, hand, hitResult);
+            if (Bricks.placeVines(serverWorld, hitResult.getBlockPos(), blockState, player)) {
+                itemStack.consume(1, player);
+                player.swing(hand, true);
+                return InteractionResult.SUCCESS;
+            }
+        }
         // pickaxe on crackable block
         else if (ToolUtils.isPickaxe(itemStack) && BlockUtils.canCrack(blockState.getBlock())) {
+            if (!InteractiveWorld.crackBlocks.enabled(player)) return InteractionResult.PASS;
             if (!(world instanceof ServerLevel serverWorld)) return PlayerUtils.clientSwingHand(player, hand, hitResult);
             if (Bricks.usePickaxeOnStone(serverWorld, hitResult.getBlockPos(), blockState)) {
                 world.playSound(null, hitResult.getBlockPos(), SoundEvents.DEEPSLATE_BRICKS_BREAK, SoundSource.BLOCKS);
@@ -57,18 +70,10 @@ public class UseBrickListener implements UseBlockCallback {
         }
         // clay ball on cracked block
         else if (itemStack.getItem().equals(Items.CLAY_BALL) && BlockUtils.isCracked(blockState.getBlock())) {
+            if (!InteractiveWorld.repairCrackedBlocks) return InteractionResult.PASS;
             if (!(world instanceof ServerLevel serverWorld)) return PlayerUtils.clientSwingHand(player, hand, hitResult);
             if (Bricks.useClayOnStone(serverWorld, hitResult.getBlockPos(), blockState, player)) {
                 world.playSound(null, hitResult.getBlockPos(), SoundEvents.DEEPSLATE_BRICKS_PLACE, SoundSource.BLOCKS);
-                itemStack.consume(1, player);
-                player.swing(hand, true);
-                return InteractionResult.SUCCESS;
-            }
-        }
-        // vines on block
-        else if (!player.isShiftKeyDown() && itemStack.is(Items.VINE) && BlockUtils.canBeMossy(blockState.getBlock())) {
-            if (!(world instanceof ServerLevel serverWorld)) return PlayerUtils.clientSwingHand(player, hand, hitResult);
-            if (Bricks.placeVines(serverWorld, hitResult.getBlockPos(), blockState, player)) {
                 itemStack.consume(1, player);
                 player.swing(hand, true);
                 return InteractionResult.SUCCESS;

@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import nl.gjorgdy.interactive_world.InteractiveWorld;
 import nl.gjorgdy.interactive_world.utils.ItemUtils;
 import nl.gjorgdy.interactive_world.utils.PlayerUtils;
 import org.jspecify.annotations.NonNull;
@@ -32,11 +33,13 @@ public class UseCauldronListener implements UseBlockCallback {
 		if (interactionHand == InteractionHand.OFF_HAND && player.getMainHandItem().getItem() instanceof BlockItem) return InteractionResult.PASS;
 
 		if (!player.isShiftKeyDown() && ItemUtils.isConcretePowder(itemStack.getItem()) && blockState.is(Blocks.WATER_CAULDRON)) {
+			if (!InteractiveWorld.hardenConcreteInCauldron) return InteractionResult.PASS;
 			if (level.isClientSide()) return PlayerUtils.clientSwingHand(player, interactionHand, blockHitResult);
 			return cauldronWash(player, interactionHand, level, blockHitResult.getBlockPos(), ItemUtils::hardenConcretePowder);
 		}
 		// concrete powder on cauldron
 		else if (!player.isShiftKeyDown() && ItemUtils.canBecomeMud(itemStack) && blockState.is(Blocks.WATER_CAULDRON)) {
+			if (!InteractiveWorld.turnDirtToMudInCauldron) return InteractionResult.PASS;
 			if (level.isClientSide()) return PlayerUtils.clientSwingHand(player, interactionHand, blockHitResult);
 			return cauldronWash(player, interactionHand, level, blockHitResult.getBlockPos(), stack -> Items.MUD.getDefaultInstance());
 		}

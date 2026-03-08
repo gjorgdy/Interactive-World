@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -27,13 +26,13 @@ public class ShovelItemMixin {
 
     @Inject(method = "useOn", at = @At(value = "RETURN"))
     public void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        if (cir.getReturnValue() == InteractionResult.PASS && context.getClickedFace() != Direction.DOWN) {
+        var player = context.getPlayer();
+        if (player == null) return;
+        if (cir.getReturnValue() == InteractionResult.PASS && InteractiveWorld.undoPathBlocks.enabled(player) && context.getClickedFace() != Direction.DOWN) {
             Level world = context.getLevel();
             BlockPos blockPos = context.getClickedPos();
             BlockState blockState = world.getBlockState(blockPos);
-            var player = context.getPlayer();
-            if (player == null) return;
-            if (blockState.is(Blocks.DIRT_PATH) && player.isCrouching() && InteractiveWorld.removePathBlock) {
+            if (blockState.is(Blocks.DIRT_PATH)) {
                 BlockState dirtState = Blocks.DIRT.defaultBlockState();
                 Block.pushEntitiesUp(blockState, dirtState, world, blockPos);
                 world.setBlock(blockPos, dirtState, 11);

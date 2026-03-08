@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import nl.gjorgdy.interactive_world.InteractiveWorld;
 import nl.gjorgdy.interactive_world.modules.Slime;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,15 +22,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemMixin {
 
     @Inject(method = "finishUsingItem", at = @At("RETURN"))
-    public void finishUsing(ItemStack stack, Level world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-        if (stack.is(Items.GLOW_BERRIES)) {
-            user.addEffect(new MobEffectInstance(MobEffects.GLOWING, 160, 0, false, true, true));
+    public void finishUsing(ItemStack stack, Level level, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir) {
+        if (stack.is(Items.GLOW_BERRIES) && InteractiveWorld.glowBerriesGlowEffect) {
+            entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 160, 0, false, true, true));
         }
     }
 
     @Inject(method = "use", at = @At(value = "RETURN"))
-    public void use(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        if (player.getItemInHand(hand).is(Items.SLIME_BALL) && world instanceof ServerLevel serverWorld) {
+    public void use(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+        if (player.getItemInHand(hand).is(Items.SLIME_BALL) && level instanceof ServerLevel serverWorld && InteractiveWorld.slimeChunkChecker) {
             Slime.use(serverWorld, player, hand);
         }
     }
