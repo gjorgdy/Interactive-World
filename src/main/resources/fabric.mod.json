@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "interactive_world",
+  "version": "${version}",
+  "name": "Interactive World",
+  "description": "Adding more in-world interactions to immersive you in your world.",
+  "authors": [],
+  "contact": {},
+  "license": "unlicense",
+  "icon": "assets/interactive_world/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "nl.gjorgdy.interactive_world.client.InteractiveWorldDataGenerator"
+    ],
+    "client": [
+      "nl.gjorgdy.interactive_world.client.InteractiveWorldClient"
+    ],
+    "main": [
+      "nl.gjorgdy.interactive_world.InteractiveWorld"
+    ]
+  },
+  "mixins": [
+    "interactive_world.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "nl.gjorgdy.interactive_world.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ConcretePowderBlockMixin",
+    "ItemEntityMixin",
+    "ItemMixin",
+    "ShovelItemMixin",
+    "TintedGlassBlockMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
