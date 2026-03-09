@@ -58,6 +58,10 @@ public class FzzyConfig extends Config {
         return config.get() == FeatureState.ENABLED;
     }
 
+    private static FeatureState booleanToConfig(boolean state) {
+        return state ? FeatureState.ENABLED : FeatureState.DISABLED;
+    }
+
     private FzzyConfig() {
         super(Identifier.fromNamespaceAndPath(InteractiveWorld.MOD_ID, "config"));
     }
@@ -66,25 +70,25 @@ public class FzzyConfig extends Config {
     private ValidatedEnum<CrouchFeatureState> crackBlocks = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
     @Comment("Using clay on cracked blocks repairs them. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> repairCrackedBlocks = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> repairCrackedBlocks = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.repairCrackedBlocks));
 
     @Comment("Using shears on a mossy block removes the moss from it. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
     private ValidatedEnum<CrouchFeatureState> shearMossyBlocks = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
     @Comment("Using vines on a block turns it into its mossy variant. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> mossifyBlocks = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> mossifyBlocks = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.mossifyBlocks));
 
     @Comment("Using Dirt on a cauldron with water turns it to mud. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> turnDirtToMudInCauldron = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> turnDirtToMudInCauldron = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.turnDirtToMudInCauldron));
 
     @Comment("Using Concrete Powder on a cauldron with water hardens it. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> hardenConcreteInCauldron = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> hardenConcreteInCauldron = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.hardenConcreteInCauldron));
 
     @Comment("Using a Wet Sponge on a cauldron with lava dries it. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> drySpongeInCauldron = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> drySpongeInCauldron = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.drySpongeInCauldron));
 
     @Comment("Placing a Wet Sponge on an active Campfire dries it. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> drySpongeOnCampfire = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> drySpongeOnCampfire = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.drySpongeOnCampfire));
 
     @Comment("Using a shovel on a path block turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
     private ValidatedEnum<CrouchFeatureState> undoPathBlock = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
@@ -93,21 +97,20 @@ public class FzzyConfig extends Config {
     private ValidatedEnum<CrouchFeatureState> undoFarmland = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
     @Comment("The minimum distance for an entity to fall to trample farmland.")
-    private ValidatedInt fallDistanceTrampleFarmland = new ValidatedInt(8, 64, 0, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
-
-    @Comment("Tinted Glass are blast proof. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> blastProofTintedGlass = new ValidatedEnum<>(FeatureState.ENABLED);
-
-    @Comment("Items exploded by TNT are 'crushed'. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> explosionItemCrushing = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedInt fallDistanceTrampleFarmland = new ValidatedInt(InteractiveWorld.fallDistanceTrampleFarmland, 64, 0, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
 
     @Comment("Right-clicking a Slime Ball shows if you're inside a slime chunk using particles. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> slimeChunkChecker = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> slimeChunkChecker = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.slimeChunkChecker));
 
     @Comment("Eating Glow Berries gives the player or mob the Glow effect. ('ENABLED', 'DISABLED')")
-    private ValidatedEnum<FeatureState> glowBerriesGlowEffect = new ValidatedEnum<>(FeatureState.ENABLED);
+    private ValidatedEnum<FeatureState> glowBerriesGlowEffect = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.glowBerriesGlowEffect));
 
     @Comment("The time in seconds the Glow effect should last when eating Glow Berries.")
-    private ValidatedInt glowBerryEffectTime = new ValidatedInt(8, 3600, 1, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
+    private ValidatedInt glowBerryEffectTime = new ValidatedInt(InteractiveWorld.glowBerryEffectTimeTicks / 20, 3600, 1, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
 
+    @Comment("Tinted Glass are blast proof. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> blastProofTintedGlass = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.blastProofTintedGlass));
+
+    @Comment("Items exploded by TNT are 'crushed'. Disabled by default for balance reasons. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> explosionItemCrushing = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.explosionItemCrushing));
 }

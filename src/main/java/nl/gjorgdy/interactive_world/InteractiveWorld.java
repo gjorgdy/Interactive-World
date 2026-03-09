@@ -35,10 +35,12 @@ public class InteractiveWorld implements ModInitializer {
 	public static boolean slimeChunkChecker = true;
 	public static boolean glowBerriesGlowEffect = true;
 	public static boolean blastProofTintedGlass = true;
-	public static boolean explosionItemCrushing = true;
 
 	public static int fallDistanceTrampleFarmland = 8;
 	public static int glowBerryEffectTimeTicks = 160;
+
+	// disabled by default for balance reasons - purely in the mod for parity reasons
+	public static boolean explosionItemCrushing = false;
 
 	@Override
 	public void onInitialize() {
