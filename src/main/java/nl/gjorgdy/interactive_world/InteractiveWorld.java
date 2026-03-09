@@ -24,7 +24,6 @@ public class InteractiveWorld implements ModInitializer {
 	public static ICrouchFeature undoPathBlocks = enabledModule;
 	public static ICrouchFeature undoFarmland = enabledModule;
 
-	public static int fallDistanceTrampleFarmland = 8;
 	public static boolean turnDirtToMudInCauldron = true;
 	public static boolean hardenConcreteInCauldron = true;
 	public static boolean mossifyBlocks = true;
@@ -33,6 +32,9 @@ public class InteractiveWorld implements ModInitializer {
 	public static boolean glowBerriesGlowEffect = true;
 	public static boolean blastProofTintedGlass = true;
 	public static boolean explosionItemCrushing = true;
+
+	public static int fallDistanceTrampleFarmland = 8;
+	public static int glowBerryEffectTimeTicks = 160;
 
 	@Override
 	public void onInitialize() {

@@ -24,7 +24,7 @@ public class ItemMixin {
     @Inject(method = "finishUsingItem", at = @At("RETURN"))
     public void finishUsing(ItemStack stack, Level level, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir) {
         if (stack.is(Items.GLOW_BERRIES) && InteractiveWorld.glowBerriesGlowEffect) {
-            entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 160, 0, false, true, true));
+            entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, InteractiveWorld.glowBerryEffectTimeTicks, 0, false, true, true));
         }
     }
 

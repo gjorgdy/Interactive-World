@@ -41,6 +41,7 @@ public class FzzyConfig extends Config {
         InteractiveWorld.hardenConcreteInCauldron = configToBoolean(config.hardenConcreteInCauldron);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
+        InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
     }
 
     private static ICrouchFeature configToModule(ValidatedEnum<CrouchFeatureState> config) {
@@ -97,5 +98,8 @@ public class FzzyConfig extends Config {
 
     @Comment("Eating Glow Berries gives the player or mob the Glow effect. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> glowBerriesGlowEffect = new ValidatedEnum<>(FeatureState.ENABLED);
+
+    @Comment("The time in seconds the Glow effect should last when eating Glow Berries.")
+    private ValidatedInt glowBerryEffectTime = new ValidatedInt(8, 3600, 1, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
 
 }
