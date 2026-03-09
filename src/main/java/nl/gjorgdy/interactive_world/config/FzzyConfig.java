@@ -25,6 +25,7 @@ public class FzzyConfig extends Config {
         var config = ConfigApiJava.registerAndLoadConfig(FzzyConfig::new);
         // modules with a crouch-only option
         InteractiveWorld.undoPathBlocks = configToModule(config.undoPathBlock);
+        InteractiveWorld.undoFarmLand = configToModule(config.undoFarmLand);
         InteractiveWorld.crackBlocks = configToModule(config.crackBlocks);
         InteractiveWorld.shearMossyBlocks = configToModule(config.shearMossyBlocks);
         // regular on/off modules
@@ -74,6 +75,9 @@ public class FzzyConfig extends Config {
 
     @Comment("Using a shovel on a path block turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
     private ValidatedEnum<CrouchFeatureState> undoPathBlock = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
+
+    @Comment("Using a shovel on farm land turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
+    private ValidatedEnum<CrouchFeatureState> undoFarmLand = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
     @Comment("Tinted Glass are blast proof. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> blastProofTintedGlass = new ValidatedEnum<>(FeatureState.ENABLED);

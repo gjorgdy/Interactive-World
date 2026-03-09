@@ -22,6 +22,7 @@ public class InteractiveWorld implements ModInitializer {
 	public static ICrouchFeature crackBlocks = enabledModule;
 	public static ICrouchFeature shearMossyBlocks = enabledModule;
 	public static ICrouchFeature undoPathBlocks = enabledModule;
+	public static ICrouchFeature undoFarmLand = enabledModule;
 
 	public static boolean turnDirtToMudInCauldron = true;
 	public static boolean hardenConcreteInCauldron = true;
