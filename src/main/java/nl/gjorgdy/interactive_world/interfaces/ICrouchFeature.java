@@ -1,4 +1,4 @@
-﻿package nl.gjorgdy.interactive_world.interfaces;
+package nl.gjorgdy.interactive_world.interfaces;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;

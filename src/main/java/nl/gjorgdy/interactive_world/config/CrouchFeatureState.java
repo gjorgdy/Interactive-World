@@ -1,4 +1,4 @@
-﻿package nl.gjorgdy.interactive_world.config;
+package nl.gjorgdy.interactive_world.config;
 
 public enum CrouchFeatureState {
 	ENABLED,

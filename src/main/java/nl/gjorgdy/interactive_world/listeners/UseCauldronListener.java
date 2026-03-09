@@ -1,4 +1,4 @@
-﻿package nl.gjorgdy.interactive_world.listeners;
+package nl.gjorgdy.interactive_world.listeners;
 
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.core.BlockPos;
