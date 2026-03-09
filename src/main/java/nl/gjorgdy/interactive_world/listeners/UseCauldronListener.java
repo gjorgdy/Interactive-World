@@ -32,21 +32,28 @@ public class UseCauldronListener implements UseBlockCallback {
 		if (interactionHand == InteractionHand.MAIN_HAND && player.getOffhandItem().getItem() instanceof BlockItem) return InteractionResult.PASS;
 		if (interactionHand == InteractionHand.OFF_HAND && player.getMainHandItem().getItem() instanceof BlockItem) return InteractionResult.PASS;
 
+		// concrete powder on water cauldron
 		if (!player.isShiftKeyDown() && ItemUtils.isConcretePowder(itemStack.getItem()) && blockState.is(Blocks.WATER_CAULDRON)) {
 			if (!InteractiveWorld.hardenConcreteInCauldron) return InteractionResult.PASS;
 			if (level.isClientSide()) return PlayerUtils.clientSwingHand(player, interactionHand, blockHitResult);
-			return cauldronWash(player, interactionHand, level, blockHitResult.getBlockPos(), ItemUtils::hardenConcretePowder);
+			return cauldronConvert(player, interactionHand, level, blockHitResult.getBlockPos(), ItemUtils::hardenConcretePowder);
 		}
-		// concrete powder on cauldron
+		// dirt on water cauldron
 		else if (!player.isShiftKeyDown() && ItemUtils.canBecomeMud(itemStack) && blockState.is(Blocks.WATER_CAULDRON)) {
 			if (!InteractiveWorld.turnDirtToMudInCauldron) return InteractionResult.PASS;
 			if (level.isClientSide()) return PlayerUtils.clientSwingHand(player, interactionHand, blockHitResult);
-			return cauldronWash(player, interactionHand, level, blockHitResult.getBlockPos(), stack -> Items.MUD.getDefaultInstance());
+			return cauldronConvert(player, interactionHand, level, blockHitResult.getBlockPos(), stack -> Items.MUD.getDefaultInstance());
+		}
+		// wet sponge on lava cauldron
+		else if (!player.isShiftKeyDown() && itemStack.is(Items.WET_SPONGE) && blockState.is(Blocks.LAVA_CAULDRON)) {
+			if (!InteractiveWorld.drySpongeInCauldron) return InteractionResult.PASS;
+			if (level.isClientSide()) return PlayerUtils.clientSwingHand(player, interactionHand, blockHitResult);
+			return cauldronConvert(player, interactionHand, level, blockHitResult.getBlockPos(), ItemUtils::drySponge);
 		}
 		return InteractionResult.PASS;
 	}
 
-	private InteractionResult cauldronWash(Player player, InteractionHand hand, Level world, BlockPos blockPos, Function<ItemStack, ItemStack> itemStackConsumer) {
+	private InteractionResult cauldronConvert(Player player, InteractionHand hand, Level world, BlockPos blockPos, Function<ItemStack, ItemStack> itemStackConsumer) {
 		ItemStack stackInHand = player.getItemInHand(hand);
 		if (player.getCooldowns().isOnCooldown(stackInHand)) return InteractionResult.FAIL;
 		ItemStack resultStack = itemStackConsumer.apply(stackInHand);

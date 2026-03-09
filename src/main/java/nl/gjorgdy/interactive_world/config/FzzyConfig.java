@@ -39,6 +39,7 @@ public class FzzyConfig extends Config {
         InteractiveWorld.repairCrackedBlocks = configToBoolean(config.repairCrackedBlocks);
         InteractiveWorld.turnDirtToMudInCauldron = configToBoolean(config.turnDirtToMudInCauldron);
         InteractiveWorld.hardenConcreteInCauldron = configToBoolean(config.hardenConcreteInCauldron);
+        InteractiveWorld.drySpongeInCauldron = configToBoolean(config.drySpongeInCauldron);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
         InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
@@ -77,6 +78,9 @@ public class FzzyConfig extends Config {
 
     @Comment("Using Concrete Powder on a cauldron with water hardens it. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> hardenConcreteInCauldron = new ValidatedEnum<>(FeatureState.ENABLED);
+
+    @Comment("Using a Wet Sponge on a cauldron with lava dries it. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> drySpongeInCauldron = new ValidatedEnum<>(FeatureState.ENABLED);
 
     @Comment("Using a shovel on a path block turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
     private ValidatedEnum<CrouchFeatureState> undoPathBlock = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);

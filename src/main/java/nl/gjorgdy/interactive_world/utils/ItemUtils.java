@@ -15,6 +15,13 @@ public class ItemUtils {
         return stack;
     }
 
+    public static ItemStack drySponge(final ItemStack stack) {
+        if (stack.is(Items.WET_SPONGE)) {
+            return Items.SPONGE.getDefaultInstance();
+        }
+        return stack;
+    }
+
     public static boolean canBecomeMud(final ItemStack stack) {
         return stack.is(Items.DIRT) || stack.is(Items.COARSE_DIRT)  || stack.is(Items.ROOTED_DIRT);
     }

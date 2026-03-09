@@ -26,6 +26,7 @@ public class InteractiveWorld implements ModInitializer {
 
 	public static boolean turnDirtToMudInCauldron = true;
 	public static boolean hardenConcreteInCauldron = true;
+	public static boolean drySpongeInCauldron = true;
 	public static boolean mossifyBlocks = true;
 	public static boolean repairCrackedBlocks = true;
 	public static boolean slimeChunkChecker = true;
