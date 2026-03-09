@@ -22,7 +22,7 @@ public class HoeItemMixin {
         var world = context.getLevel();
         var pos = context.getClickedPos();
         var player = context.getPlayer();
-        if (world.getBlockState(pos).is(Blocks.FARMLAND) && InteractiveWorld.undoFarmLand.enabled(player)) {
+        if (world.getBlockState(pos).is(Blocks.FARMLAND) && InteractiveWorld.undoFarmland.enabled(player)) {
             if (world.getBlockState(pos.above()).isAir()) {
                 world.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
                 world.playSound(null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1f, 0.5f);

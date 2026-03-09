@@ -7,6 +7,8 @@ import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.event.api.v2.OnUpdateServerListener;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedNumber;
 import net.minecraft.resources.Identifier;
 import nl.gjorgdy.interactive_world.InteractiveWorld;
 import nl.gjorgdy.interactive_world.interfaces.ICrouchFeature;
@@ -25,7 +27,7 @@ public class FzzyConfig extends Config {
         var config = ConfigApiJava.registerAndLoadConfig(FzzyConfig::new);
         // modules with a crouch-only option
         InteractiveWorld.undoPathBlocks = configToModule(config.undoPathBlock);
-        InteractiveWorld.undoFarmLand = configToModule(config.undoFarmLand);
+        InteractiveWorld.undoFarmland = configToModule(config.undoFarmland);
         InteractiveWorld.crackBlocks = configToModule(config.crackBlocks);
         InteractiveWorld.shearMossyBlocks = configToModule(config.shearMossyBlocks);
         // regular on/off modules
@@ -37,6 +39,8 @@ public class FzzyConfig extends Config {
         InteractiveWorld.repairCrackedBlocks = configToBoolean(config.repairCrackedBlocks);
         InteractiveWorld.turnDirtToMudInCauldron = configToBoolean(config.turnDirtToMudInCauldron);
         InteractiveWorld.hardenConcreteInCauldron = configToBoolean(config.hardenConcreteInCauldron);
+        // value settings
+        InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
     }
 
     private static ICrouchFeature configToModule(ValidatedEnum<CrouchFeatureState> config) {
@@ -77,7 +81,10 @@ public class FzzyConfig extends Config {
     private ValidatedEnum<CrouchFeatureState> undoPathBlock = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
     @Comment("Using a shovel on farm land turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
-    private ValidatedEnum<CrouchFeatureState> undoFarmLand = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
+    private ValidatedEnum<CrouchFeatureState> undoFarmland = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
+
+    @Comment("The minimum distance for an entity to fall to trample farmland.")
+    private ValidatedInt fallDistanceTrampleFarmland = new ValidatedInt(8, 64, 0, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
 
     @Comment("Tinted Glass are blast proof. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> blastProofTintedGlass = new ValidatedEnum<>(FeatureState.ENABLED);
