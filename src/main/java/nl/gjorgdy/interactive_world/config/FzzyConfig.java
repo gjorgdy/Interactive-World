@@ -40,6 +40,7 @@ public class FzzyConfig extends Config {
         InteractiveWorld.turnDirtToMudInCauldron = configToBoolean(config.turnDirtToMudInCauldron);
         InteractiveWorld.hardenConcreteInCauldron = configToBoolean(config.hardenConcreteInCauldron);
         InteractiveWorld.drySpongeInCauldron = configToBoolean(config.drySpongeInCauldron);
+        InteractiveWorld.drySpongeOnCampfire = configToBoolean(config.drySpongeOnCampfire);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
         InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
@@ -82,10 +83,13 @@ public class FzzyConfig extends Config {
     @Comment("Using a Wet Sponge on a cauldron with lava dries it. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> drySpongeInCauldron = new ValidatedEnum<>(FeatureState.ENABLED);
 
+    @Comment("Placing a Wet Sponge on an active Campfire dries it. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> drySpongeOnCampfire = new ValidatedEnum<>(FeatureState.ENABLED);
+
     @Comment("Using a shovel on a path block turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
     private ValidatedEnum<CrouchFeatureState> undoPathBlock = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
-    @Comment("Using a shovel on farm land turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
+    @Comment("Using a hoe on farm land turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')")
     private ValidatedEnum<CrouchFeatureState> undoFarmland = new ValidatedEnum<>(CrouchFeatureState.ENABLED, ValidatedEnum.WidgetType.CYCLING);
 
     @Comment("The minimum distance for an entity to fall to trample farmland.")

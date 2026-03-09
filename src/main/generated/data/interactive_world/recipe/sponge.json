@@ -1,0 +1,15 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "minecraft:interactive_world_config_dryspongeoncampfire"
+    }
+  ],
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 320,
+  "experience": 0.35,
+  "ingredient": "minecraft:wet_sponge",
+  "result": {
+    "id": "minecraft:sponge"
+  }
+}

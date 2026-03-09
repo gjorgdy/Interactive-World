@@ -13,9 +13,6 @@
     "fabric-datagen": [
       "nl.gjorgdy.interactive_world.client.InteractiveWorldDataGenerator"
     ],
-    "client": [
-      "nl.gjorgdy.interactive_world.client.InteractiveWorldClient"
-    ],
     "main": [
       "nl.gjorgdy.interactive_world.InteractiveWorld"
     ]

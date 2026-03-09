@@ -2,7 +2,9 @@ package nl.gjorgdy.interactive_world;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.fabricmc.loader.api.FabricLoader;
+import nl.gjorgdy.interactive_world.client.conditions.SpongeCampfireCondition;
 import nl.gjorgdy.interactive_world.config.FzzyConfig;
 import nl.gjorgdy.interactive_world.interfaces.ICrouchFeature;
 import nl.gjorgdy.interactive_world.listeners.UseBrickListener;
@@ -27,6 +29,7 @@ public class InteractiveWorld implements ModInitializer {
 	public static boolean turnDirtToMudInCauldron = true;
 	public static boolean hardenConcreteInCauldron = true;
 	public static boolean drySpongeInCauldron = true;
+	public static boolean drySpongeOnCampfire = true;
 	public static boolean mossifyBlocks = true;
 	public static boolean repairCrackedBlocks = true;
 	public static boolean slimeChunkChecker = true;
@@ -41,6 +44,8 @@ public class InteractiveWorld implements ModInitializer {
 	public void onInitialize() {
 		UseBlockCallback.EVENT.register(new UseBrickListener());
 		UseBlockCallback.EVENT.register(new UseCauldronListener());
+
+		ResourceConditions.register(new SpongeCampfireCondition().getType());
 
 		if (FabricLoader.getInstance().isModLoaded("fzzy_config")) {
 			FzzyConfig.load();
