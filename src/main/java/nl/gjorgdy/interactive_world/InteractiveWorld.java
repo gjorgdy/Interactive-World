@@ -35,6 +35,7 @@ public class InteractiveWorld implements ModInitializer {
 	public static boolean slimeChunkChecker = true;
 	public static boolean glowBerriesGlowEffect = true;
 	public static boolean blastProofTintedGlass = true;
+	public static boolean toggleItemFrameVisibility = true;
 
 	public static int fallDistanceTrampleFarmland = 8;
 	public static int glowBerryEffectTimeTicks = 160;

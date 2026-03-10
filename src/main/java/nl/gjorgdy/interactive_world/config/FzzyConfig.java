@@ -41,6 +41,7 @@ public class FzzyConfig extends Config {
         InteractiveWorld.hardenConcreteInCauldron = configToBoolean(config.hardenConcreteInCauldron);
         InteractiveWorld.drySpongeInCauldron = configToBoolean(config.drySpongeInCauldron);
         InteractiveWorld.drySpongeOnCampfire = configToBoolean(config.drySpongeOnCampfire);
+        InteractiveWorld.toggleItemFrameVisibility = configToBoolean(config.toggleItemFrameVisibility);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
         InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
@@ -101,6 +102,9 @@ public class FzzyConfig extends Config {
 
     @Comment("Right-clicking a Slime Ball shows if you're inside a slime chunk using particles. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> slimeChunkChecker = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.slimeChunkChecker));
+
+    @Comment("Crouch right-clicking an Item Frame toggles its visibility. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> toggleItemFrameVisibility = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.slimeChunkChecker));
 
     @Comment("Eating Glow Berries gives the player or mob the Glow effect. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> glowBerriesGlowEffect = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.glowBerriesGlowEffect));
