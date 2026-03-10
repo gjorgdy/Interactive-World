@@ -9,36 +9,39 @@
 
 All features can be enabled, disabled, or for some set to 'only when crouching' in the config file.
 
-### Cracked Blocks
+### Cracking/repairing Blocks
 - Click a block with a pickaxe to turn it into its cracked variant. (e.g. Stone Bricks -> Cracked Stone Bricks)
 - Use clay on cracked blocks to repair them.
 
-### Mossy Blocks
+### Mossifying/shearing Blocks
 - Click a block with shears to remove the moss from it. (e.g. Mossy Cobblestone -> Cobblestone)
 - Use vines on a block to turn it into its mossy variant. (e.g. Cobblestone -> Mossy Cobblestone)
 
-### Cauldron Interactions
+### Cauldrons
 - Use Dirt on a cauldron with water to turn it to mud.
 - Use Concrete Powder on a cauldron with water to harden it into a solid block.
 - Use a Wet Sponge on a cauldron with lava to dry it out.
 
-### Campfire Interactions/Recipes
+### Campfires
 - Place a Wet Sponge on an active Campfire to dry it out.
 
-### Path and Farmland Interactions
+### Undo-ing Paths and Farmland
 - Use a shovel on a path block to turn it back into dirt.
 - Use a hoe on farm land to turn it back into dirt.
 - The height an entity must fall to trample farmland is increased.
   - This minimum height can be configured in the config file.
 
-### Slime Chunk 'Checker'
+### Slime Chunks Checker
 - Right-clicking a Slime Ball shows if you're inside a slime chunk using particles.
   - If in a slime chunk, green particles will appear.
   - If not in a slime chunk, only a 'Slime Block break sound' can be heard.
 
-### Glow Berries Glow Effect
+### Glow Berries Effect
 - Eating Glow Berries gives the player or mob the Glow effect.
   - The duration of the effect can be configured in the config file.
+
+### Item Frames Visibility
+- Crouch clicking an Item Frame toggles its visibility.
 
 ### Blast Proof Tinted Glass
 - Tinted Glass are blast proof, meaning they will not break from explosions.
@@ -82,6 +85,8 @@ undoFarmland = "ENABLED"
 fallDistanceTrampleFarmland = 8
 # Right-clicking a Slime Ball shows if you're inside a slime chunk using particles. ('ENABLED', 'DISABLED')
 slimeChunkChecker = "ENABLED"
+# Crouch right-clicking an Item Frame toggles its visibility. ('ENABLED', 'DISABLED')
+toggleItemFrameVisibility = "ENABLED"
 # Eating Glow Berries gives the player or mob the Glow effect. ('ENABLED', 'DISABLED')
 glowBerriesGlowEffect = "ENABLED"
 # The time in seconds the Glow effect should last when eating Glow Berries.
