@@ -46,10 +46,19 @@ All features can be enabled, disabled, or for some set to 'only when crouching' 
 ### Blast Proof Tinted Glass
 - Tinted Glass are blast proof, meaning they will not break from explosions.
 
+<br>
+
+## Resource Features
+
+There are also some features which adds new ways of obtaining resources, these are disabled by default for balance reasons, but can be enabled in the config file.
+
 ### Explosion Item Crushing
 - Items exploded by TNT are 'crushed', meaning they will drop as their crushed variant.
   - Concrete will turn to their respective Powder form, Cobblestone will turn to Gravel, and Sandstone will turn to Sand.
-  - This is disabled by default for balance reasons, as it can be used to easily obtain large amounts of certain items.
+
+### Experience Capturing
+- When a player is holding an empty Bottle and picks-up experience orbs, the experience will be captured in the bottle, turning it into a Bottle o' Enchanting.
+- A Bottle o' Enchanting gets created from 8 experience points and drops between 3 and 7 when thrown to the ground.
 
 <br>
 
