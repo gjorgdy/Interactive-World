@@ -10,6 +10,7 @@
     "ItemEntityMixin",
     "ItemFrameMixin",
     "ItemMixin",
+    "PlayerMixin",
     "ShovelItemMixin",
     "TintedGlassBlockMixin"
   ],

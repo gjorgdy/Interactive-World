@@ -32,7 +32,6 @@ public class FzzyConfig extends Config {
         InteractiveWorld.shearMossyBlocks = configToModule(config.shearMossyBlocks);
         // regular on/off modules
         InteractiveWorld.blastProofTintedGlass = configToBoolean(config.blastProofTintedGlass);
-        InteractiveWorld.explosionItemCrushing = configToBoolean(config.explosionItemCrushing);
         InteractiveWorld.slimeChunkChecker = configToBoolean(config.slimeChunkChecker);
         InteractiveWorld.glowBerriesGlowEffect = configToBoolean(config.glowBerriesGlowEffect);
         InteractiveWorld.mossifyBlocks = configToBoolean(config.mossifyBlocks);
@@ -42,6 +41,8 @@ public class FzzyConfig extends Config {
         InteractiveWorld.drySpongeInCauldron = configToBoolean(config.drySpongeInCauldron);
         InteractiveWorld.drySpongeOnCampfire = configToBoolean(config.drySpongeOnCampfire);
         InteractiveWorld.toggleItemFrameVisibility = configToBoolean(config.toggleItemFrameVisibility);
+        InteractiveWorld.explosionItemCrushing = configToBoolean(config.explosionItemCrushing);
+        InteractiveWorld.captureExperienceInBottles = configToBoolean(config.captureExperienceInBottles);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
         InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
@@ -117,4 +118,7 @@ public class FzzyConfig extends Config {
 
     @Comment("Items exploded by TNT are 'crushed'. Disabled by default for balance reasons. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> explosionItemCrushing = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.explosionItemCrushing));
+
+    @Comment("Players holding empty Glass Bottles can capture XP to create a Bottle o' Enchanting. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> captureExperienceInBottles = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.captureExperienceInBottles));
 }

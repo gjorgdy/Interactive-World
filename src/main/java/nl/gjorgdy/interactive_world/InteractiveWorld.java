@@ -42,6 +42,7 @@ public class InteractiveWorld implements ModInitializer {
 
 	// disabled by default for balance reasons - purely in the mod for parity reasons
 	public static boolean explosionItemCrushing = false;
+	public static boolean captureExperienceInBottles = false;
 
 	@Override
 	public void onInitialize() {
