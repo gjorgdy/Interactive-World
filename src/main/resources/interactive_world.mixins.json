@@ -6,10 +6,12 @@
   "mixins": [
     "ConcretePowderBlockMixin",
     "FarmBlockMixin",
+    "FluidBlockMixin",
     "HoeItemMixin",
     "ItemEntityMixin",
     "ItemFrameMixin",
     "ItemMixin",
+    "LavaFluidMixin",
     "PlayerMixin",
     "ShovelItemMixin",
     "TintedGlassBlockMixin"

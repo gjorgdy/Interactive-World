@@ -41,11 +41,15 @@ public class FzzyConfig extends Config {
         InteractiveWorld.drySpongeInCauldron = configToBoolean(config.drySpongeInCauldron);
         InteractiveWorld.drySpongeOnCampfire = configToBoolean(config.drySpongeOnCampfire);
         InteractiveWorld.toggleItemFrameVisibility = configToBoolean(config.toggleItemFrameVisibility);
+
+        InteractiveWorld.environmentDependentStoneGeneration = configToBoolean(config.environmentDependentStoneGeneration);
+        InteractiveWorld.cryingObsidianGeneration = configToBoolean(config.cryingObsidianGeneration);
         InteractiveWorld.explosionItemCrushing = configToBoolean(config.explosionItemCrushing);
         InteractiveWorld.captureExperienceInBottles = configToBoolean(config.captureExperienceInBottles);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
         InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
+        InteractiveWorld.cryingObsidianGenerationChance = config.cryingObsidianGenerationChance.get();
     }
 
     private static ICrouchFeature configToModule(ValidatedEnum<CrouchFeatureState> config) {
@@ -115,6 +119,15 @@ public class FzzyConfig extends Config {
 
     @Comment("Tinted Glass are blast proof. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> blastProofTintedGlass = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.blastProofTintedGlass));
+
+    @Comment("Biomes should affect (Cobble)stone generation. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> environmentDependentStoneGeneration = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.environmentDependentStoneGeneration));
+
+    @Comment("A chance of Crying Obsidian generating instead of Obsidian. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> cryingObsidianGeneration = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.cryingObsidianGeneration));
+
+    @Comment("The 1 in 'n' chance of Crying Obsidian generating instead of Obsidian.")
+    private ValidatedInt cryingObsidianGenerationChance = new ValidatedInt(InteractiveWorld.cryingObsidianGenerationChance, 1024, 0, ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS);
 
     @Comment("Items exploded by TNT are 'crushed'. Disabled by default for balance reasons. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> explosionItemCrushing = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.explosionItemCrushing));

@@ -39,10 +39,13 @@ public class InteractiveWorld implements ModInitializer {
 
 	public static int fallDistanceTrampleFarmland = 8;
 	public static int glowBerryEffectTimeTicks = 160;
+	public static int cryingObsidianGenerationChance = 16;
 
-	// disabled by default for balance reasons - purely in the mod for parity reasons
+	// disabled by default for balance reasons
+	public static boolean environmentDependentStoneGeneration = false;
 	public static boolean explosionItemCrushing = false;
 	public static boolean captureExperienceInBottles = false;
+	public static boolean cryingObsidianGeneration = false;
 
 	@Override
 	public void onInitialize() {

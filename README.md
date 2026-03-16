@@ -52,6 +52,17 @@ All features can be enabled, disabled, or for some set to 'only when crouching' 
 
 There are also some features which adds new ways of obtaining resources, these are disabled by default for balance reasons, but can be enabled in the config file.
 
+### Environment dependent (Cobble)Stone Generation
+- When lava and water meet and Cobblestone or Stone would be generated, it will instead generate a block based on its position.
+  - If the block under it is Stone or Cobblestone, it will generate the default block (Stone or Cobblestone).
+  - In the End, it will always generate End Stone.
+  - Below Y=0, Cobbled Deepslate will generate instead of Cobblestone, and Deepslate will generate instead of Stone.
+  - Between Y=50 and Y=10, there is a chance Diorite, Andesite, or Granite will generate instead of Stone.
+  - The heights in between the before mentioned Y levels will have an equal chance of generating either.
+  - In a Desert biome, Sandstone will generate instead of Cobblestone, and Smooth Sandstone will generate instead of Stone.
+  - In a Badlands biome, Red Sandstone will generate instead of Cobblestone, and Terracotta or Smooth Red Sandstone will generate instead of Stone.
+  - In a Mossy biome (Jungles and Taigas), there is a chance of Mossy Cobblestone generating instead of Cobblestone.
+
 ### Explosion Item Crushing
 - Items exploded by TNT are 'crushed', meaning they will drop as their crushed variant.
   - Concrete will turn to their respective Powder form, Cobblestone will turn to Gravel, and Sandstone will turn to Sand.
@@ -70,22 +81,7 @@ To change settings, you can install [Fzzy Config](https://modrinth.com/mod/fzzy-
 To load changes to the config file, you can use the vanilla ``/reload`` command.
 
 ```toml
-# Clicking a block with a pickaxe turns it into its cracked variant. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')
-crackBlocks = "ENABLED"
-# Using clay on cracked blocks repairs them. ('ENABLED', 'DISABLED')
-repairCrackedBlocks = "ENABLED"
-# Using shears on a mossy block removes the moss from it. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')
-shearMossyBlocks = "ENABLED"
-# Using vines on a block turns it into its mossy variant. ('ENABLED', 'DISABLED')
-mossifyBlocks = "ENABLED"
-# Using Dirt on a cauldron with water turns it to mud. ('ENABLED', 'DISABLED')
-turnDirtToMudInCauldron = "ENABLED"
-# Using Concrete Powder on a cauldron with water hardens it. ('ENABLED', 'DISABLED')
-hardenConcreteInCauldron = "ENABLED"
-# Using a Wet Sponge on a cauldron with lava dries it. ('ENABLED', 'DISABLED')
-drySpongeInCauldron = "ENABLED"
-# Placing a Wet Sponge on an active Campfire dries it. ('ENABLED', 'DISABLED')
-drySpongeOnCampfire = "ENABLED"
+...
 # Using a shovel on a path block turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')
 undoPathBlock = "ENABLED"
 # Using a hoe on farm land turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')
@@ -104,4 +100,5 @@ glowBerryEffectTime = 8
 blastProofTintedGlass = "ENABLED"
 # Items exploded by TNT are 'crushed'. Disabled by default for balance reasons. ('ENABLED', 'DISABLED')
 explosionItemCrushing = "DISABLED"
+...
 ```
