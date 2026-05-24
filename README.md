@@ -9,25 +9,27 @@
 
 All features can be enabled, disabled, or for some set to 'only when crouching' in the config file.
 
-### Cracking/repairing Blocks
+### Cracking/Repairing Blocks
 - Click a block with a pickaxe to turn it into its cracked variant. (e.g. Stone Bricks -> Cracked Stone Bricks)
 - Use clay on cracked blocks to repair them.
 
-### Mossifying/shearing Blocks
+### Mossifying/Shearing Blocks
 - Click a block with shears to remove the moss from it. (e.g. Mossy Cobblestone -> Cobblestone)
 - Use vines on a block to turn it into its mossy variant. (e.g. Cobblestone -> Mossy Cobblestone)
 
-### Cauldrons
+### Cauldron Washing
 - Use Dirt on a cauldron with water to turn it to mud.
 - Use Concrete Powder on a cauldron with water to harden it into a solid block.
-- Use a Wet Sponge on a cauldron with lava to dry it out.
+- Use a Wet Sponge on a cauldron with lava to dry it.
+- Dispensers pointed into cauldrons can also be used to perform these interactions.
+  - Putting a hopper under a cauldron instantly collects the washed items, preventing sponges from burning in the lava.
 
 ### Campfires
-- Place a Wet Sponge on an active Campfire to dry it out.
+- Place a Wet Sponge on an active Campfire to dry it.
 
-### Undo-ing Paths and Farmland
+### Undoing Paths and Farmland
 - Use a shovel on a path block to turn it back into dirt.
-- Use a hoe on farm land to turn it back into dirt.
+- Use a hoe on farmland to turn it back into dirt.
 - The height an entity must fall to trample farmland is increased.
   - This minimum height can be configured in the config file.
 
@@ -54,26 +56,4 @@ On its own, the mod will not create a config file.
 To change settings, you can install [Fzzy Config](https://modrinth.com/mod/fzzy-config).
 
 To load changes to the config file, you can use the vanilla ``/reload`` command.
-
-```toml
-...
-# Using a shovel on a path block turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')
-undoPathBlock = "ENABLED"
-# Using a hoe on farm land turns it into dirt. ('ENABLED', 'CROUCH_ONLY', 'DISABLED')
-undoFarmland = "ENABLED"
-# The minimum distance for an entity to fall to trample farmland.
-fallDistanceTrampleFarmland = 8
-# Right-clicking a Slime Ball shows if you're inside a slime chunk using particles. ('ENABLED', 'DISABLED')
-slimeChunkChecker = "ENABLED"
-# Crouch right-clicking an Item Frame toggles its visibility. ('ENABLED', 'DISABLED')
-toggleItemFrameVisibility = "ENABLED"
-# Eating Glow Berries gives the player or mob the Glow effect. ('ENABLED', 'DISABLED')
-glowBerriesGlowEffect = "ENABLED"
-# The time in seconds the Glow effect should last when eating Glow Berries.
-glowBerryEffectTime = 8
-# Tinted Glass are blast proof. ('ENABLED', 'DISABLED')
-blastProofTintedGlass = "ENABLED"
-# Items exploded by TNT are 'crushed'. Disabled by default for balance reasons. ('ENABLED', 'DISABLED')
-explosionItemCrushing = "DISABLED"
-...
-```
+> Some config options do require a full client/server restart to take effect, and will be noted as such in the config file.

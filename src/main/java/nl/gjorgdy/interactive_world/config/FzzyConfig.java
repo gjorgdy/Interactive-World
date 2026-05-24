@@ -39,6 +39,7 @@ public class FzzyConfig extends Config {
         InteractiveWorld.turnDirtToMudInCauldron = configToBoolean(config.turnDirtToMudInCauldron);
         InteractiveWorld.hardenConcreteInCauldron = configToBoolean(config.hardenConcreteInCauldron);
         InteractiveWorld.drySpongeInCauldron = configToBoolean(config.drySpongeInCauldron);
+        InteractiveWorld.allowDispenserToUseCauldron = configToBoolean(config.allowDispenserToUseCauldron);
         InteractiveWorld.drySpongeOnCampfire = configToBoolean(config.drySpongeOnCampfire);
         InteractiveWorld.toggleItemFrameVisibility = configToBoolean(config.toggleItemFrameVisibility);
         // value settings
@@ -86,6 +87,9 @@ public class FzzyConfig extends Config {
 
     @Comment("Using a Wet Sponge on a cauldron with lava dries it. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> drySpongeInCauldron = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.drySpongeInCauldron));
+
+    @Comment("A dispenser dispensing items on a cauldron 'washes' them. ('ENABLED', 'DISABLED') - requires client/server restart")
+    private ValidatedEnum<FeatureState> allowDispenserToUseCauldron = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.allowDispenserToUseCauldron));
 
     @Comment("Placing a Wet Sponge on an active Campfire dries it. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> drySpongeOnCampfire = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.drySpongeOnCampfire));
