@@ -49,7 +49,7 @@ public class Slime {
     }
 
     public static boolean isSlimeChunk(Level world, ChunkAccess chunk) {
-        return WorldgenRandom.seedSlimeChunk(chunk.getPos().x, chunk.getPos().z, ((WorldGenLevel) world).getSeed(), 987234911L).nextInt(10) == 0;
+        return WorldgenRandom.seedSlimeChunk(chunk.getPos().x(), chunk.getPos().z(), ((WorldGenLevel) world).getSeed(), 987234911L).nextInt(10) == 0;
     }
 
 }

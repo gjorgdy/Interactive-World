@@ -5,14 +5,10 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ConcretePowderBlockMixin",
-    "FarmBlockMixin",
-    "FluidBlockMixin",
+    "FarmlandBlockMixin",
     "HoeItemMixin",
-    "ItemEntityMixin",
     "ItemFrameMixin",
     "ItemMixin",
-    "LavaFluidMixin",
-    "PlayerMixin",
     "ShovelItemMixin",
     "TintedGlassBlockMixin"
   ],

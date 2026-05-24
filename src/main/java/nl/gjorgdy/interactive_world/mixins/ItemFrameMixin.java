@@ -12,6 +12,7 @@ import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import nl.gjorgdy.interactive_world.InteractiveWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,7 +36,7 @@ public abstract class ItemFrameMixin extends HangingEntity {
 	}
 
 	@Inject(method = "interact", at = @org.spongepowered.asm.mixin.injection.At("HEAD"), cancellable = true)
-	public void onInteract(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
+	public void onInteract(Player player, InteractionHand hand, Vec3 location, CallbackInfoReturnable<InteractionResult> cir) {
 		if (!InteractiveWorld.toggleItemFrameVisibility) return;
 		if (player.isCrouching() && !hasFlippedVisibility && !getItem().isEmpty()) {
 			hasFlippedVisibility = true;
