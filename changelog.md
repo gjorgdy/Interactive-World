@@ -1,4 +1,6 @@
-﻿Pre-release
+﻿First Release
 ---
 
-- Ported from [Solute](https://modrinth.com/mod/solute), it will be removed from it in a future update.
+- Ported features from [Solute](https://modrinth.com/mod/solute)
+- Added a bunch of new features
+- Upgraded to Minecraft 26.1.2
