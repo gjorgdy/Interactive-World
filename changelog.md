@@ -1,6 +1,4 @@
-﻿First Release
+﻿A Sulfur World
 ---
 
-- Ported features from [Solute](https://modrinth.com/mod/solute)
-- Added a bunch of new features
-- Upgraded to Minecraft 26.1.2
+- Updated to 26.2
