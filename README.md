@@ -44,6 +44,10 @@ All features can be enabled, disabled, or for some set to 'only when crouching' 
 
 ### Item Frames Visibility
 - Crouch clicking an Item Frame toggles its visibility.
+- An invisible Item Frame can be clicked through to interact with blocks like Chests behind it. 
+
+### Click-Through Signs
+- Clicking on a sign on an interactable block (e.g. a Chest) will ignore the sign if not crouching, allowing you to interact with the block behind it.
 
 ### Blast Proof Tinted Glass
 - Tinted Glass are blast proof, meaning they will not break from explosions.
