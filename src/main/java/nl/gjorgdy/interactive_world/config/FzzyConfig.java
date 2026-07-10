@@ -42,6 +42,7 @@ public class FzzyConfig extends Config {
         InteractiveWorld.allowDispenserToUseCauldron = configToBoolean(config.allowDispenserToUseCauldron);
         InteractiveWorld.drySpongeOnCampfire = configToBoolean(config.drySpongeOnCampfire);
         InteractiveWorld.toggleItemFrameVisibility = configToBoolean(config.toggleItemFrameVisibility);
+        InteractiveWorld.clickThroughWallSign = configToBoolean(config.clickThroughWallSign);
         // value settings
         InteractiveWorld.fallDistanceTrampleFarmland = config.fallDistanceTrampleFarmland.get();
         InteractiveWorld.glowBerryEffectTimeTicks = config.glowBerryEffectTime.get() * 20;
@@ -108,6 +109,9 @@ public class FzzyConfig extends Config {
 
     @Comment("Crouch right-clicking an Item Frame toggles its visibility. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> toggleItemFrameVisibility = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.slimeChunkChecker));
+
+    @Comment("Clicking on a wall sign on an interactable block will ignore the sign if not crouching. ('ENABLED', 'DISABLED')")
+    private ValidatedEnum<FeatureState> clickThroughWallSign = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.clickThroughWallSign));
 
     @Comment("Eating Glow Berries gives the player or mob the Glow effect. ('ENABLED', 'DISABLED')")
     private ValidatedEnum<FeatureState> glowBerriesGlowEffect = new ValidatedEnum<>(booleanToConfig(InteractiveWorld.glowBerriesGlowEffect));

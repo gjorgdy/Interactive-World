@@ -11,6 +11,7 @@
     "ItemFrameMixin",
     "ItemMixin",
     "ShovelItemMixin",
+    "SignBlockMixin",
     "TintedGlassBlockMixin"
   ],
   "client": [
