@@ -1,5 +1,6 @@
+![A campfire in the rain](https://cdn.modrinth.com/data/cached_images/1f3d3f13101803624247ad1ca935f123a44bb33b.webp)
+
 <center>
-    <h1>TO-DO : Banner image</h1>
     A bunch of small interactions that add a bit more depth to the game, and make use of items and blocks that are often overlooked.
 </center>
 
